@@ -1,5 +1,5 @@
-#ifndef MAKE_SPOOF_UTILS_LOGGING_H_
-#define MAKE_SPOOF_UTILS_LOGGING_H_
+#ifndef SPOOF_CREATER_UTILS_LOGGING_H_
+#define SPOOF_CREATER_UTILS_LOGGING_H_
 #include <stdarg.h>
 enum LogLevel {
   LOG_INFO = 0,
@@ -53,4 +53,4 @@ void log_handler(LogLevel level, const char* filename, int lineno,
 #define CHECK_GT(a, b) CHECK((a) > (b))
 #define CHECK_GE(a, b) CHECK((a) >= (b))
 
-#endif  // MAKE_SPOOF_UTILS_LOGGING_H_
+#endif  // SPOOF_CREATER_UTILS_LOGGING_H_

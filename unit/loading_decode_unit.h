@@ -1,5 +1,5 @@
-#ifndef MAKE_SPOOF_UINT_LOADING_DECODE_UNIT_H_
-#define MAKE_SPOOF_UINT_LOADING_DECODE_UNIT_H_
+#ifndef SPOOF_CREATER_UINT_LOADING_DECODE_UNIT_H_
+#define SPOOF_CREATER_UINT_LOADING_DECODE_UNIT_H_
 
 #include "internal_thread/loading_thread.h"
 #include "internal_thread/decode_thread.h"
@@ -19,4 +19,4 @@ class LoadingDecodeUnit {
   DecodeThread decode_thread_;
 };
 
-#endif  // MAKE_SPOOF__LOADING_DECODE_UNIT_H_
+#endif  // SPOOF_CREATER__LOADING_DECODE_UNIT_H_

@@ -1,5 +1,5 @@
-#ifndef MAKE_SPOOF_UTILS_BOUNDED_BLOCKING_QUEUE_H_
-#define MAKE_SPOOF_UTILS_BOUNDED_BLOCKING_QUEUE_H_
+#ifndef SPOOF_CREATER_UTILS_BOUNDED_BLOCKING_QUEUE_H_
+#define SPOOF_CREATER_UTILS_BOUNDED_BLOCKING_QUEUE_H_
 
 #include <condition_variable>
 #include <mutex>
@@ -120,4 +120,4 @@ inline size_t BoundedBlockingQueue<T>::capacity() const {
   return buffer_.capacity() - 1;
 }
 
-#endif  // MAKE_SPOOF_UTILS_BOUNDED_BLOCKING_QUEUE_H_
+#endif  // SPOOF_CREATER_UTILS_BOUNDED_BLOCKING_QUEUE_H_

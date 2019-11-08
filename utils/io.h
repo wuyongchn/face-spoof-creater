@@ -1,5 +1,5 @@
-#ifndef MAKE_SPOOF_UTILS_IO_H_
-#define MAKE_SPOOF_UTILS_IO_H_
+#ifndef SPOOF_CREATER_UTILS_IO_H_
+#define SPOOF_CREATER_UTILS_IO_H_
 
 #include <fstream>
 #include <string>
@@ -9,4 +9,4 @@ bool WriteFile(const std::string& filename, std::vector<unsigned char>& buffer);
 
 bool ReadFile(const std::string& filename, std::vector<unsigned char>& buffer);
 
-#endif  // MAKE_SPOOF_UTILS_IO_H_
+#endif  // SPOOF_CREATER_UTILS_IO_H_

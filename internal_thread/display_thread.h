@@ -1,5 +1,5 @@
-#ifndef MAKE_SPOOF_INTERNAL_THREAD_DISPLAY_THREAD_H_
-#define MAKE_SPOOF_INTERNAL_THREAD_DISPLAY_THREAD_H_
+#ifndef SPOOF_CREATER_INTERNAL_THREAD_DISPLAY_THREAD_H_
+#define SPOOF_CREATER_INTERNAL_THREAD_DISPLAY_THREAD_H_
 
 #include "internal_thread/display_thread.h"
 #include "internal_thread/internal_data.h"

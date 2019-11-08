@@ -1,5 +1,5 @@
-#ifndef MAKE_SPOOF_UINT_ENCODE_DUMPING_UNIT_H_
-#define MAKE_SPOOF_UINT_ENCODE_DUMPING_UNIT_H_
+#ifndef SPOOF_CREATER_UINT_ENCODE_DUMPING_UNIT_H_
+#define SPOOF_CREATER_UINT_ENCODE_DUMPING_UNIT_H_
 
 #include "internal_thread/encode_thread.h"
 #include "internal_thread/dumping_thread.h"
@@ -20,4 +20,4 @@ class EncodeDumpingUnit {
   DumpingThread dumping_thread_;
 };
 
-#endif  // MAKE_SPOOF__ENCODE_DUMPING_UNIT_H_
+#endif  // SPOOF_CREATER__ENCODE_DUMPING_UNIT_H_

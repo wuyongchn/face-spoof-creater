@@ -1,5 +1,5 @@
-#ifndef MAKE_SPOOF_UTILS_THREAD_H_
-#define MAKE_SPOOF_UTILS_THREAD_H_
+#ifndef SPOOF_CREATER_UTILS_THREAD_H_
+#define SPOOF_CREATER_UTILS_THREAD_H_
 
 #include <memory>
 #include <thread>
@@ -18,4 +18,4 @@ class Thread {
   std::shared_ptr<std::thread> thread_;
 };
 
-#endif  // MAKE_SPOOF_UTILS_THREAD_H_
+#endif  // SPOOF_CREATER_UTILS_THREAD_H_
