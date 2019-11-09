@@ -13,7 +13,7 @@ SpoofAligner::SpoofAligner(const std::string& src, const std::string& dst,
       dst_points_(dst_points),
       dst_size_(dst_size),
       crop_size_(crop_size) {
-  SortPoints(dst_points);
+  SortPoints(dst_points_);
 }
 
 SpoofAligner::~SpoofAligner() {
@@ -35,7 +35,12 @@ void SpoofAligner::Start(const cv::Rect& external, const cv::Rect& internal,
   for (int i = 0; i < total_; ++i) {
     cv::Mat img = in_.pop();
     cv::cvtColor(img, gray, cv::COLOR_RGB2GRAY);
-    src_points = FindAlignBorder(gray, param, criteria);
+    FillRegion(gray, internal);
+    FillRegion(gray, text);
+    src_points = FindAlignBorder(gray(external), param, criteria);
+    for (auto& point : src_points) {
+      point += cv::Point2f(external.x, external.y);
+    }
     cv::Mat h = cv::findHomography(src_points, dst_points_);
     cv::Mat img_align;
     warpPerspective(img, img_align, h, dst_size_);
@@ -44,7 +49,7 @@ void SpoofAligner::Start(const cv::Rect& external, const cv::Rect& internal,
   }
 }
 
-void SpoofAligner::SortPoints(const CVPoint2fVec& points) {
+void SpoofAligner::SortPoints(CVPoint2fVec& points) {
   if (points.empty()) {
     return;
   }
@@ -82,8 +87,6 @@ CVPoint2fVec SpoofAligner::FindAlignBorder(const cv::Mat& gray,
                                            const FeaturesParam& param,
                                            const cv::TermCriteria& criteria) {
   std::vector<cv::Point2f> corners;
-  //  cv::imshow("test", gray);
-  //  cv::waitKey();
   cv::goodFeaturesToTrack(gray, corners, param.max_corners, param.quality_level,
                           param.min_distance, cv::Mat(), param.block_size,
                           param.use_harris, param.k);

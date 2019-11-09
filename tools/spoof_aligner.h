@@ -18,6 +18,7 @@ struct FeaturesParam {
 using CVPoint2fVec = cv::vector<cv::Point2f>;
 
 class SpoofAligner {
+ public:
   SpoofAligner(const std::string& src, const std::string& dst, int total,
                int batch_size, int queue_capacity,
                const CVPoint2fVec& dst_points, const cv::Size& dst_size,
@@ -28,7 +29,7 @@ class SpoofAligner {
              const cv::TermCriteria& criteria);
 
  private:
-  static void SortPoints(const CVPoint2fVec& points);
+  static void SortPoints(CVPoint2fVec& points);
   CVPoint2fVec FindAlignBorder(const cv::Mat& src, const FeaturesParam& param,
                                const cv::TermCriteria& criteria);
   void FillRegion(cv::Mat& gray, const cv::Rect& region);
@@ -39,7 +40,7 @@ class SpoofAligner {
   CVMatQueue out_;
   LoadingDecodeUnit loading_decode_unit_;
   EncodeDumpingUnit encode_dumping_unit_;
-  cv::vector<cv::Point2f> dst_points_;
+  CVPoint2fVec dst_points_;
   cv::Size dst_size_;
   cv::Size crop_size_;
 };

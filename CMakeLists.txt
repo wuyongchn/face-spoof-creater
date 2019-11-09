@@ -12,8 +12,12 @@ include_directories(${PROJECT_SOURCE_DIR})
 add_subdirectory(utils)
 add_subdirectory(internal_thread)
 add_subdirectory(unit)
-add_executable(make_spoof
-        main.cc
-        make_spoof.h make_spoof.cc
+add_executable(create_spoof
+        create_spoof.cc
+        tools/spoof_creater.cc
         )
-target_link_libraries(make_spoof unit internal_thread utils ${OpenCV_LIBS} ${CMAKE_THREAD_LIBS_INIT} X11)
+add_executable(align_spoof
+        align_spoof.cc
+        tools/spoof_aligner.cc)
+target_link_libraries(create_spoof unit internal_thread utils ${OpenCV_LIBS} ${CMAKE_THREAD_LIBS_INIT} X11)
+target_link_libraries(align_spoof unit internal_thread utils ${OpenCV_LIBS} ${CMAKE_THREAD_LIBS_INIT})
