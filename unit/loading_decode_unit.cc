@@ -2,12 +2,12 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-LoadingDecodeUnit::LoadingDecodeUnit(const std::string& src, int total,
-                                     int batch_size, CVMatQueue& queue,
-                                     std::atomic_bool& loading)
+LoadingDecodeUnit::LoadingDecodeUnit(const std::string& src, CVMatQueue& queue,
+                                     std::atomic_bool& loading, int batch_size,
+                                     int begin, int end)
     : vec_(),
-      loading_thread_(src, vec_, total, batch_size, loading),
-      decode_thread_(vec_, queue, total, loading) {
+      loading_thread_(src, vec_, loading, batch_size, begin, end),
+      decode_thread_(vec_, queue, loading, begin, end) {
   if (::socketpair(AF_LOCAL, SOCK_STREAM, 0, fds_)) {
     printf("%s:%d socketpair error, %s", __FILE__, __LINE__, strerror(errno));
     exit(0);

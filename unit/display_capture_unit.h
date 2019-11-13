@@ -8,7 +8,7 @@ class Background;
 class DisplayCaptureUnit {
  public:
   DisplayCaptureUnit(CVMatQueue& in, CVMatQueue& out, Background* background,
-                     int total);
+                     int begin, int end);
   void Start(int display_delay, int capture_delay, int camera_id,
              const cv::Size& frame_size);
   void StartDisplay(int display_delay);

@@ -6,10 +6,8 @@
 
 class DecodeThread : public Thread {
  public:
-  DecodeThread(EncodedImgVec& vec, CVMatQueue& queue, int total,
-               std::atomic_bool& loading, int fd);
-  DecodeThread(EncodedImgVec& vec, CVMatQueue& queue, int total,
-               std::atomic_bool& loading);
+  DecodeThread(EncodedImgVec& vec, CVMatQueue& queue, std::atomic_bool& loading,
+               int begin, int end, int fd = -1);
   void set_fd(int fd) { fd_ = fd; };
 
  private:
@@ -17,8 +15,9 @@ class DecodeThread : public Thread {
 
   EncodedImgVec& vec_;
   CVMatQueue& queue_;
-  int total_;
   std::atomic_bool& loading_;
+  int begin_;
+  int end_;
   int fd_;
 };
 

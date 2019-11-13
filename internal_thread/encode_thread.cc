@@ -2,20 +2,22 @@
 #include <unistd.h>
 
 EncodeThread::EncodeThread(EncodedImgVecPair& vec_pair, CVMatQueue& queue,
-                           std::atomic_bool& dumping, int total, int batch_size)
+                           std::atomic_bool& dumping, int batch_size, int begin,
+                           int end, int fd)
     : Thread(),
       vec_pair_(vec_pair),
       queue_(queue),
       dumping_(dumping),
-      total_(total),
       batch_size_(batch_size),
-      fd_(-1) {}
+      begin_(begin),
+      end_(end),
+      fd_(fd) {}
 
 void EncodeThread::ThreadEntry() {
   char dummy[1] = {};
   int count = 0;
   cv::Mat img;
-  for (int i = 0; i < total_; ++i) {
+  for (int i = begin_; i < end_; ++i) {
     img = queue_.pop();
     std::vector<unsigned char> buf;
     cv::imencode(".jpg", img, buf);

@@ -4,12 +4,12 @@
 
 EncodeDumpingUnit::EncodeDumpingUnit(CVMatQueue& queue,
                                      const std::string& source,
-                                     std::atomic_bool& loading, int total,
-                                     int batch_size)
+                                     std::atomic_bool& loading, int batch_size,
+                                     int begin, int end)
     : dumping_(false),
       vec_pair_(),
-      encode_thread_(vec_pair_, queue, dumping_, total, batch_size),
-      dumping_thread_(vec_pair_, source, dumping_, loading, total) {
+      encode_thread_(vec_pair_, queue, dumping_, batch_size, begin, end),
+      dumping_thread_(vec_pair_, source, dumping_, loading, begin, end) {
   if (::socketpair(AF_LOCAL, SOCK_STREAM, 0, fds_)) {
     printf("%s:%d socketpair error, %s", __FILE__, __LINE__, strerror(errno));
     exit(0);

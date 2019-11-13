@@ -7,7 +7,8 @@
 class EncodeThread : public Thread {
  public:
   EncodeThread(EncodedImgVecPair& vec_pair, CVMatQueue& queue,
-               std::atomic_bool& dumping, int total, int batch_size);
+               std::atomic_bool& dumping, int batch_size, int begin, int end,
+               int fd = -1);
   void set_fd(int fd) { fd_ = fd; }
 
  private:
@@ -16,8 +17,9 @@ class EncodeThread : public Thread {
   EncodedImgVecPair& vec_pair_;
   CVMatQueue& queue_;
   std::atomic_bool& dumping_;
-  int total_;
   int batch_size_;
+  int begin_;
+  int end_;
   int fd_;
 };
 #endif

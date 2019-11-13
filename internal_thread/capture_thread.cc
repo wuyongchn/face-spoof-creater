@@ -1,12 +1,13 @@
 #include "internal_thread/capture_thread.h"
 
 CaptureThread::CaptureThread(CVMatQueue& queue, DisplayAction& action,
-                             int total, int delay)
+                             int delay, int begin, int end)
     : Thread(),
       queue_(queue),
       action_(action),
-      total_(total),
       delay_(delay),
+      begin_(begin),
+      end_(end),
       cap_() {}
 
 CaptureThread::~CaptureThread() { CloseCamera(); }
@@ -22,7 +23,7 @@ void CaptureThread::ThreadEntry() {
   for (int i = 0; i < 10; ++i) {
     cap_ >> frame;
   }
-  for (int i = 0; i < total_;) {
+  for (int i = begin_; i < end_;) {
     for (int k = 0; k < 3; ++k) {
       cap_ >> frame;
     }

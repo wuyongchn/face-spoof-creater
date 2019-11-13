@@ -7,8 +7,8 @@
 class DumpingThread : public Thread {
  public:
   DumpingThread(EncodedImgVecPair& vec_pair, const std::string& source,
-                std::atomic_bool& dumping, std::atomic_bool& loading,
-                int total);
+                std::atomic_bool& dumping, std::atomic_bool& loading, int begin,
+                int end, int fd = -1);
   void set_fd(int fd) { fd_ = fd; }
 
  private:
@@ -18,7 +18,8 @@ class DumpingThread : public Thread {
   std::string source_;
   std::atomic_bool& dumping_;
   std::atomic_bool& loading_;
-  int total_;
+  int begin_;
+  int end_;
   int fd_;
 };
 

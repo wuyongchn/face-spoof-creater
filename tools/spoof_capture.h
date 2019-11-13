@@ -9,8 +9,8 @@
 class Background;
 class SpoofCapture {
  public:
-  SpoofCapture(const std::string& src, const std::string& dst, int total,
-               int batch_size, int queue_capacity,
+  SpoofCapture(const std::string& src, const std::string& dst, int begin,
+               int end, int batch_size, int queue_capacity,
                Background* background = nullptr);
   ~SpoofCapture();
   void Start(int display_delay, int capture_delay, int camera_id,

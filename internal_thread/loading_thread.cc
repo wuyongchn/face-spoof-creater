@@ -3,28 +3,24 @@
 #include "utils/io.h"
 
 LoadingThread::LoadingThread(const std::string& source, EncodedImgVec& vec,
-                             int total, int batch_size,
-                             std::atomic_bool& loading, int fd)
+                             std::atomic_bool& loading, int batch_size,
+                             int begin, int end, int fd)
     : Thread(),
       source_(source),
       vec_(vec),
-      total_(total),
-      batch_size_(batch_size),
       loading_(loading),
+      batch_size_(batch_size),
+      begin_(begin),
+      end_(end),
       fd_(fd) {}
-
-LoadingThread::LoadingThread(const std::string& source, EncodedImgVec& vec,
-                             int total, int batch_size,
-                             std::atomic_bool& loading)
-    : LoadingThread(source, vec, total, batch_size, loading, -1) {}
 
 void LoadingThread::ThreadEntry() {
   char name[128];
   char dummy[1] = {};
-  for (int i = 0; i < total_;) {
+  for (int i = begin_; i < end_;) {
     if (loading_.load()) {
-      for (int j = 0; i < total_ && j < batch_size_; ++i, ++j) {
-        snprintf(name, sizeof(name), "%s/%d/%05d.jpg", source_.c_str(),
+      for (int j = 0; i < end_ && j < batch_size_; ++i, ++j) {
+        snprintf(name, sizeof(name), "%s/%d/%06d.jpg", source_.c_str(),
                  i / 10000, i);
         std::vector<unsigned char> buffer;
         ReadFile(name, buffer);

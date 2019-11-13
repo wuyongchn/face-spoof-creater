@@ -6,7 +6,8 @@
 
 class CaptureThread : public Thread {
  public:
-  CaptureThread(CVMatQueue& queue, DisplayAction& action, int total, int delay);
+  CaptureThread(CVMatQueue& queue, DisplayAction& action, int delay, int begin,
+                int end);
   ~CaptureThread();
   bool OpenCamera(int camera_id) { return cap_.open(camera_id); }
   void CloseCamera();
@@ -26,8 +27,9 @@ class CaptureThread : public Thread {
 
   CVMatQueue& queue_;
   DisplayAction& action_;
-  int total_;
   int delay_;
+  int begin_;
+  int end_;
   cv::VideoCapture cap_;
 };
 #endif

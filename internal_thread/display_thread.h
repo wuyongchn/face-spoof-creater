@@ -8,8 +8,8 @@
 class Background;
 class DisplayThread : public Thread {
  public:
-  DisplayThread(CVMatQueue& queue, Background* background_,
-                DisplayAction& action, int total, int delay);
+  DisplayThread(CVMatQueue& queue, Background* background,
+                DisplayAction& action, int delay, int begin, int end);
   void set_window_name(const std::string& window_name) {
     window_name_ = window_name;
   }
@@ -26,7 +26,8 @@ class DisplayThread : public Thread {
   Background* background_;
   std::string window_name_;
   DisplayAction& action_;
-  int total_;
   int delay_;
+  int begin_;
+  int end_;
 };
 #endif

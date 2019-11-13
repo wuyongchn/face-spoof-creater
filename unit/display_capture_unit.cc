@@ -4,10 +4,11 @@
 #include <unistd.h>
 
 DisplayCaptureUnit::DisplayCaptureUnit(CVMatQueue& in, CVMatQueue& out,
-                                       Background* background, int total)
+                                       Background* background, int begin,
+                                       int end)
     : action_(DISPLAY_ONLY),
-      display_thread_(in, background, action_, total, 33),
-      capture_thread_(out, action_, total, 33),
+      display_thread_(in, background, action_, 33, begin, end),
+      capture_thread_(out, action_, 33, begin, end),
       display_only_(false) {}
 
 void DisplayCaptureUnit::Start(int display_delay, int capture_delay,

@@ -1,22 +1,20 @@
 #include "internal_thread/decode_thread.h"
 #include <unistd.h>
 
-DecodeThread::DecodeThread(EncodedImgVec& vec, CVMatQueue& queue, int total,
-                           std::atomic_bool& loading, int fd)
+DecodeThread::DecodeThread(EncodedImgVec& vec, CVMatQueue& queue,
+                           std::atomic_bool& loading, int begin, int end,
+                           int fd)
     : Thread(),
       vec_(vec),
       queue_(queue),
-      total_(total),
       loading_(loading),
+      begin_(begin),
+      end_(end),
       fd_(fd) {}
-
-DecodeThread::DecodeThread(EncodedImgVec& vec, CVMatQueue& queue, int total,
-                           std::atomic_bool& loading)
-    : DecodeThread(vec, queue, total, loading, -1) {}
 
 void DecodeThread::ThreadEntry() {
   char dummy[1] = {};
-  for (int i = 0; i < total_;) {
+  for (int i = begin_; i < end_;) {
     if (loading_.load()) {
       ::read(fd_, dummy, sizeof(dummy));  // waiting for waking up me
     } else {
@@ -26,7 +24,7 @@ void DecodeThread::ThreadEntry() {
         ++i;
       }
       vec_.clear();
-      if (i != total_) {
+      if (i != end_) {
         loading_.store(true);
         ::write(fd_, dummy, sizeof(dummy));  // to wake up read thread
       }
