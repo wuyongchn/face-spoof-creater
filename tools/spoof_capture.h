@@ -1,5 +1,5 @@
-#ifndef SPOOF_CREATER_TOOLS_SPOOF_CREATER_H_
-#define SPOOF_CREATER_TOOLS_SPOOF_CREATER_H_
+#ifndef FACE_SPOOF_PROCTOOLS_TOOLS_SPOOF_CAPTURE_H_
+#define FACE_SPOOF_PROCTOOLS_TOOLS_SPOOF_CAPTURE_H_
 
 #include <opencv2/opencv.hpp>
 #include "unit/display_capture_unit.h"
@@ -7,12 +7,12 @@
 #include "unit/loading_decode_unit.h"
 
 class Background;
-class SpoofCreater {
+class SpoofCapture {
  public:
-  SpoofCreater(const std::string& src, const std::string& dst, int total,
+  SpoofCapture(const std::string& src, const std::string& dst, int total,
                int batch_size, int queue_capacity,
                Background* background = nullptr);
-  ~SpoofCreater();
+  ~SpoofCapture();
   void Start(int display_delay, int capture_delay, int camera_id,
              const cv::Size& frame_size = cv::Size(0, 0));
   void StartDisplay(int display_delay);
@@ -27,4 +27,4 @@ class SpoofCreater {
   EncodeDumpingUnit encode_dumping_unit_;
 };
 
-#endif  // SPOOF_CREATER__SPOOF_CREATER_H_
+#endif  // FACE_SPOOF_PROCTOOLS__FACE_SPOOF_PROCTOOLS_H_

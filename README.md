@@ -1,2 +1,2 @@
-# make-spoof-tool
-a tool for making presentation attack detection samples
+# make-spoof-proctools
+tools for making presentation attack samples

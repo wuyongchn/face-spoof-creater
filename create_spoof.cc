@@ -1,5 +1,5 @@
 #include <X11/Xlib.h>
-#include "tools/spoof_creater.h"
+#include "tools/spoof_capture.h"
 #include "utils/background.h"
 
 int main() {
@@ -11,7 +11,7 @@ int main() {
   Background background(1024, 1024, 20, 30, 500);
   background.TextTemplate("12345", 1.5, 2, cv::Scalar::all(255));
   XInitThreads();
-  SpoofCreater make_spoof(src, dst, kTotalImages, kBatchSize, kQueueCapacity,
+  SpoofCapture make_spoof(src, dst, kTotalImages, kBatchSize, kQueueCapacity,
                           &background);
   // make_spoof.Start(kDelay1, kDelay2, kCameraId, frame_size);
   // make_spoof.Start(kDelay1, kDelay2, kCameraId);

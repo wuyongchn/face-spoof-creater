@@ -1,5 +1,5 @@
-#ifndef SPOOF_CREATER_INTERNAL_THREAD_INTERNAL_DATA_H_
-#define SPOOF_CREATER_INTERNAL_THREAD_INTERNAL_DATA_H_
+#ifndef FACE_SPOOF_PROCTOOLS_INTERNAL_THREAD_INTERNAL_DATA_H_
+#define FACE_SPOOF_PROCTOOLS_INTERNAL_THREAD_INTERNAL_DATA_H_
 
 #include <atomic>
 #include <opencv2/opencv.hpp>
@@ -12,4 +12,4 @@ using EncodedImgVecPair = std::pair<EncodedImgVec, EncodedImgVec>;
 enum Action { DISPLAY_ONLY, STOP, NEXT };
 using DisplayAction = std::atomic<Action>;
 
-#endif  // SPOOF_CREATER_INTERNAL_THREAD_INTERNAL_DATA_H_
+#endif  // FACE_SPOOF_PROCTOOLS_INTERNAL_THREAD_INTERNAL_DATA_H_

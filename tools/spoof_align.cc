@@ -1,6 +1,6 @@
-#include "tools/spoof_aligner.h"
+#include "tools/spoof_align.h"
 
-SpoofAligner::SpoofAligner(const std::string& src, const std::string& dst,
+SpoofAlign::SpoofAlign(const std::string& src, const std::string& dst,
                            int total, int batch_size, int queue_capacity,
                            const CVPoint2fVec& dst_points,
                            const cv::Size& dst_size, const cv::Size& crop_size)
@@ -16,12 +16,12 @@ SpoofAligner::SpoofAligner(const std::string& src, const std::string& dst,
   SortPoints(dst_points_);
 }
 
-SpoofAligner::~SpoofAligner() {
+SpoofAlign::~SpoofAlign() {
   loading_decode_unit_.Stop();
   encode_dumping_unit_.Stop();
 }
 
-void SpoofAligner::Start(const cv::Rect& external, const cv::Rect& internal,
+void SpoofAlign::Start(const cv::Rect& external, const cv::Rect& internal,
                          const cv::Rect& text, const FeaturesParam& param,
                          const cv::TermCriteria& criteria) {
   loading_decode_unit_.Start();
@@ -49,7 +49,7 @@ void SpoofAligner::Start(const cv::Rect& external, const cv::Rect& internal,
   }
 }
 
-void SpoofAligner::SortPoints(CVPoint2fVec& points) {
+void SpoofAlign::SortPoints(CVPoint2fVec& points) {
   if (points.empty()) {
     return;
   }
@@ -83,7 +83,7 @@ void SpoofAligner::SortPoints(CVPoint2fVec& points) {
   sort(points.begin(), points.end(), less);
 }
 
-CVPoint2fVec SpoofAligner::FindAlignBorder(const cv::Mat& gray,
+CVPoint2fVec SpoofAlign::FindAlignBorder(const cv::Mat& gray,
                                            const FeaturesParam& param,
                                            const cv::TermCriteria& criteria) {
   std::vector<cv::Point2f> corners;
@@ -96,7 +96,7 @@ CVPoint2fVec SpoofAligner::FindAlignBorder(const cv::Mat& gray,
   return border;
 }
 
-void SpoofAligner::FillRegion(cv::Mat& gray, const cv::Rect& region) {
+void SpoofAlign::FillRegion(cv::Mat& gray, const cv::Rect& region) {
   uchar c1 = gray.at<uchar>(region.tl());
   uchar c2 = gray.at<uchar>(region.br());
   uchar c3 = gray.at<uchar>(region.tl() + cv::Point(region.width, 0));

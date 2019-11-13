@@ -1,5 +1,5 @@
-#ifndef SPOOF_CREATER_UINT_DISPLAY_CAPTURE_UNIT_H_
-#define SPOOF_CREATER_UINT_DISPLAY_CAPTURE_UNIT_H_
+#ifndef FACE_SPOOF_PROCTOOLS_UINT_DISPLAY_CAPTURE_UNIT_H_
+#define FACE_SPOOF_PROCTOOLS_UINT_DISPLAY_CAPTURE_UNIT_H_
 
 #include "internal_thread/capture_thread.h"
 #include "internal_thread/display_thread.h"
@@ -25,4 +25,4 @@ class DisplayCaptureUnit {
   bool display_only_;
 };
 
-#endif  // SPOOF_CREATER__DISPLAY_CAPTURE_UNIT_H_
+#endif  // FACE_SPOOF_PROCTOOLS__DISPLAY_CAPTURE_UNIT_H_

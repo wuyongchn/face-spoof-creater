@@ -1,5 +1,5 @@
-#ifndef SPOOF_CREATER_UTILS_BACKGROUND_H_
-#define SPOOF_CREATER_UTILS_BACKGROUND_H_
+#ifndef FACE_SPOOF_PROCTOOLS_UTILS_BACKGROUND_H_
+#define FACE_SPOOF_PROCTOOLS_UTILS_BACKGROUND_H_
 
 #include <opencv2/opencv.hpp>
 class Background {
@@ -36,4 +36,4 @@ class Background {
   cv::vector<cv::Point2f> corners_;
 };
 
-#endif  // SPOOF_CREATER_UTILS_BACKGROUND_H_
+#endif  // FACE_SPOOF_PROCTOOLS_UTILS_BACKGROUND_H_

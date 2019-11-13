@@ -14,10 +14,10 @@ add_subdirectory(internal_thread)
 add_subdirectory(unit)
 add_executable(create_spoof
         create_spoof.cc
-        tools/spoof_creater.cc
+        tools/spoof_capture.cc
         )
 add_executable(align_spoof
         align_spoof.cc
-        tools/spoof_aligner.cc)
+        tools/spoof_align.cc)
 target_link_libraries(create_spoof unit internal_thread utils ${OpenCV_LIBS} ${CMAKE_THREAD_LIBS_INIT} X11)
 target_link_libraries(align_spoof unit internal_thread utils ${OpenCV_LIBS} ${CMAKE_THREAD_LIBS_INIT})

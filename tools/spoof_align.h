@@ -1,5 +1,5 @@
-#ifndef SPOOF_CREATER_TOOLS_SPOOF_ALIGNER_H_
-#define SPOOF_CREATER_TOOLS_SPOOF_ALIGNER_H_
+#ifndef FACE_SPOOF_PROCTOOLS_TOOLS_SPOOF_ALIGNER_H_
+#define FACE_SPOOF_PROCTOOLS_TOOLS_SPOOF_ALIGNER_H_
 
 #include <opencv2/opencv.hpp>
 #include <vector>
@@ -17,13 +17,13 @@ struct FeaturesParam {
 
 using CVPoint2fVec = cv::vector<cv::Point2f>;
 
-class SpoofAligner {
+class SpoofAlign {
  public:
-  SpoofAligner(const std::string& src, const std::string& dst, int total,
+  SpoofAlign(const std::string& src, const std::string& dst, int total,
                int batch_size, int queue_capacity,
                const CVPoint2fVec& dst_points, const cv::Size& dst_size,
                const cv::Size& crop_size);
-  ~SpoofAligner();
+  ~SpoofAlign();
   void Start(const cv::Rect& external, const cv::Rect& internal,
              const cv::Rect& text, const FeaturesParam& param,
              const cv::TermCriteria& criteria);

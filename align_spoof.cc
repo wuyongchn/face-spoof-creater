@@ -1,4 +1,4 @@
-#include "tools/spoof_aligner.h"
+#include "tools/spoof_align.h"
 #include "utils/background.h"
 
 int main() {
@@ -16,7 +16,7 @@ int main() {
     point *= scale;
   }
 
-  SpoofAligner aligner(src, dst, kTotalImages, kBatchSize, kQueueCapacity,
+  SpoofAlign aligner(src, dst, kTotalImages, kBatchSize, kQueueCapacity,
                        dst_points, dst_size, crop_size);
 
   cv::Rect external(584, 193, 732, 734);
