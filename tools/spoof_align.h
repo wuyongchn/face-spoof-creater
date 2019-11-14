@@ -44,6 +44,7 @@ class GetText : public SpoofAlign::PostAlign {
  public:
   GetText(const cv::Rect& text_rect, const std::string& dst, int batch_size);
   void Proc(const cv::Mat& align_img, int idx) override;
+  ~GetText();
 
  private:
   void Dump();

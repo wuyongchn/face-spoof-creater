@@ -62,6 +62,12 @@ GetText::GetText(const cv::Rect& text_rect, const std::string& dst,
       batch_size_(batch_size),
       count_(0) {}
 
+GetText::~GetText() {
+  if (buf_.size()) {
+    Dump();
+  }
+}
+
 void GetText::Proc(const cv::Mat& align_img, int idx) {
   cv::Mat text_img = align_img(text_rect_);
   std::string text = recognizer_.Recognize(text_img);

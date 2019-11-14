@@ -20,7 +20,7 @@ void Proc(const char *src, const char *dst, int begin, int end,
   int batch_size = 1000, queue_capacity = 500;
   float scale = 0.5;
   Background background(1024, 1024, 20, 30, 500);
-  std::vector<cv::Point2f> dst_points = background.corners(), init_points;
+  std::vector<cv::Point2f> dst_points = background.corners();
   cv::Size dst_size = background.background_size(), crop_size(512, 512);
   cv::Rect text_rect(245, 10, 85, 25);
 
@@ -29,8 +29,6 @@ void Proc(const char *src, const char *dst, int begin, int end,
   }
   dst_size.width *= scale;
   dst_size.height *= scale;
-
-  GetInitPoints(src, begin, init_points);
 
   CornerParam param = {.max_corners = 200,
                        .quality_level = 0.01,
@@ -46,7 +44,7 @@ void Proc(const char *src, const char *dst, int begin, int end,
 
   SpoofAlign aligner(src, dst, batch_size, begin, end, queue_capacity,
                      dst_points, dst_size, crop_size, detector, &get_text);
-
+  std::cout << "processing... " << src << std::endl;
   aligner.Start();
 }
 
@@ -78,7 +76,7 @@ int main() {
     const char *src =
         "/home/wuyong/Datasets/ffhq-nvidia-spoof/samsung-huawei-day";
     const char *dst = "/home/wuyong/Datasets/align/samsung-huawei-day";
-    int begin = 82, end = 202157;
+    int begin = 82, end = 212056;
     std::vector<cv::Point2f> init_points = {
         {136, 450},  {350, 445},  {352, 420},  {732, 420},  {736, 440},
         {947, 438},  {949, 656},  {969, 658},  {969, 1027}, {947, 1029},

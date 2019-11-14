@@ -21,6 +21,7 @@ std::string TextRecognizer::Recognize(const cv::Mat& img) {
   while (!ans.empty() && ans.back() == '\n') {
     ans.pop_back();
   }
+  return ans;
 }
 
 void TextRecognizer::BinaryProc(cv::Mat& gray) {

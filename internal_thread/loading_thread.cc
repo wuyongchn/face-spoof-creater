@@ -21,7 +21,7 @@ void LoadingThread::ThreadEntry() {
     if (loading_.load()) {
       for (int j = 0; i < end_ && j < batch_size_; ++i, ++j) {
         snprintf(name, sizeof(name), "%s/%d/%06d.jpg", source_.c_str(),
-                 i / 10000, i);
+                 i / 20000, i);
         std::vector<unsigned char> buffer;
         ReadFile(name, buffer);
         vec_.emplace_back(std::move(buffer));
